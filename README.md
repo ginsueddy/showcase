@@ -1,2 +1,2 @@
 # showcase
-capstone yuhhh
+## Nick Liang, Krystal Graylin, Tony Choi, Ginsu Eddy
