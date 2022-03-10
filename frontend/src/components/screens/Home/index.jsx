@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ChevronDown } from '@styled-icons/feather';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
+import Footer from '../../shared/Footer';
 
 const Header = styled.h1`
     font-family: 'Syne', sans-serif;
@@ -32,10 +33,6 @@ const Text = styled.p`
 `;
 
 const Button = styled.button``;
-
-const Footer = styled.div`
-
-`;
 
 const Home = () => {
     const { height, width } = useWindowDimensions();
@@ -86,24 +83,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div style={{ width, height: height * .2 }}>
-                <div style={{ paddingLeft: '5%', paddingRight: '3%'}}>
-                    <HighlightedHeader style={{ fontSize: 36 }}>SHW/RM</HighlightedHeader>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <div style={{ display: 'flex', flexDirection: 'row', width: '18%', justifyContent: 'space-between' }}>
-                            <Text style={{ fontSize: 14 }}>Contact Us</Text>
-                            <Text style={{ fontSize: 14 }}>FAQ</Text>
-                            <Text style={{ fontSize: 14 }}>Instagram</Text>
-                        </div>
-                        <Text style={{ fontSize: 14 }}>Designed in Seattle, WA</Text>
-                        <div style={{ display: 'flex', flexDirection: 'row', width: '15%', justifyContent: 'space-between' }}>
-                            <Text style={{ fontSize: 14 }}>Privacy - Terms</Text>
-                            <Text style={{ fontSize: 14 }}>&copy; 2022</Text>
-                        </div>
-                    </div>
-                </div>
-                {/* <div style={{ backgroundColor: '#5DA27D', width, height: height * .2, position: 'fixed', bottom: 0 }}/> */}
-            </div>
+            <Footer />
         </>
     );
 };
