@@ -12,6 +12,7 @@ const Header = styled.h1`
     letter-spacing: -2px;
     color: #232323;
 `;
+
 const HighlightedHeader = styled.h1`
     font-family: 'Syne', sans-serif;
     font-style: normal;
