@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ChevronDown } from '@styled-icons/feather';
+import { Link } from 'react-router-dom';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
 import Footer from '../../shared/Footer';
 
@@ -33,7 +34,24 @@ const Text = styled.p`
     color: #000000;
 `;
 
-const Button = styled.button``;
+const ButtonText = styled.div`
+    font-family: 'Syne', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 200%;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #3E372D;
+`;
+
+const Button = ({ text, onPress }) => {
+    return (
+        <div onClick={onPress} style={{ borderWidth: '1.5px', borderStyle: 'solid', borderColor: '#C7CBC7', backgroundColor: 'white', paddingLeft: 40, paddingRight: 40, paddingTop: 4, paddingBottom: 4, borderRadius: 30 }}>
+            <ButtonText>{text}</ButtonText>
+        </div>
+    );
+};
 
 const Home = () => {
     const { height, width } = useWindowDimensions();
@@ -49,9 +67,9 @@ const Home = () => {
                 <Text style={{ textAlign: 'center' }}>Tell us what you love,</Text>
                 <Text style={{ textAlign: 'center' }}>be with who you love</Text>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <div style={{ width: 80, border: '5px solid black', }}>
-                        <Button />
-                    </div>
+                    <Link to="/booking" style={{ textDecoration: 'none' }}>
+                        <Button text="RSVP NOW"/>
+                    </Link>
                     <ChevronDown size="48" title="view more" />
                 </div>
             </div>
@@ -63,15 +81,15 @@ const Home = () => {
                 <Text style={{ textAlign: 'start' }}>Personalize your entertainment profile -</Text>
                 <Text style={{ textAlign: 'start' }}>we'll curate a Showroom experience for</Text>
                 <Text style={{ textAlign: 'start' }}>{'you & up to 9 friends'}</Text>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ width: 80, border: '5px solid black', }}>
-                        <Button />
-                    </div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                    <Link to="/booking" style={{ textDecoration: 'none' }}>
+                        <Button text="LEARN MORE"/>
+                    </Link>
                 </div>
             </div>
             <Header>music, food, gaming, art, jewerly, dance, skincare, cocktails, fashion, photography, local, crafts, live</Header>
             <div style={{ height: height * .9, paddingRight: '12%' }}>
-                <div style={{}}>
+                <div>
                     <HighlightedHeader style={{ color: '#5DA27D', textAlign: 'end' }}>Discover indie</HighlightedHeader>
                     <Header style={{ textAlign: 'end' }}>vendors you'll love</Header>
                 </div>
@@ -79,9 +97,9 @@ const Home = () => {
                 <Text style={{ textAlign: 'end' }}>creators to help you find your</Text>
                 <Text style={{ textAlign: 'end' }}>new favorite thing.</Text>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                    <div style={{ width: 80, border: '5px solid black', }}>
-                        <Button />
-                    </div>
+                    <Link to="/booking" style={{ textDecoration: 'none' }}>
+                        <Button text="GET STARTED"/>
+                    </Link>
                 </div>
             </div>
             <Footer />
