@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import { ChevronDown } from '@styled-icons/feather';
 import { Link } from 'react-router-dom';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
+import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
 
-const Header = styled.h1`
+const HeaderText = styled.h1`
     font-family: 'Syne', sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -58,11 +59,12 @@ const Home = () => {
     
     return (
         <>
+            <Header />
             <div style={{ height: height * .95 }}>
                 <div style={{}}>
-                    <Header style={{ textAlign: 'center' }}>Your perfect</Header>
+                    <HeaderText style={{ textAlign: 'center' }}>Your perfect</HeaderText>
                     <HighlightedHeader style={{ textAlign: 'center' }}>Friday night</HighlightedHeader>
-                    <Header style={{ textAlign: 'center' }}>is waiting</Header>
+                    <HeaderText style={{ textAlign: 'center' }}>is waiting</HeaderText>
                 </div>
                 <Text style={{ textAlign: 'center' }}>Tell us what you love,</Text>
                 <Text style={{ textAlign: 'center' }}>be with who you love</Text>
@@ -75,7 +77,7 @@ const Home = () => {
             </div>
             <div style={{ height: height * .9, paddingLeft: '10%' }}>
                 <div style={{}}>
-                    <Header style={{ textAlign: 'start' }}>We're throwing a</Header>
+                    <HeaderText style={{ textAlign: 'start' }}>We're throwing a</HeaderText>
                     <HighlightedHeader style={{ color: '#E69C57'}}>party for you</HighlightedHeader>
                 </div>
                 <Text style={{ textAlign: 'start' }}>Personalize your entertainment profile -</Text>
@@ -87,11 +89,11 @@ const Home = () => {
                     </Link>
                 </div>
             </div>
-            <Header>music, food, gaming, art, jewerly, dance, skincare, cocktails, fashion, photography, local, crafts, live</Header>
+            <HeaderText>music, food, gaming, art, jewerly, dance, skincare, cocktails, fashion, photography, local, crafts, live</HeaderText>
             <div style={{ height: height * .9, paddingRight: '12%' }}>
                 <div>
                     <HighlightedHeader style={{ color: '#5DA27D', textAlign: 'end' }}>Discover indie</HighlightedHeader>
-                    <Header style={{ textAlign: 'end' }}>vendors you'll love</Header>
+                    <HeaderText style={{ textAlign: 'end' }}>vendors you'll love</HeaderText>
                 </div>
                 <Text style={{ textAlign: 'end' }}>We partner with up-and-coming</Text>
                 <Text style={{ textAlign: 'end' }}>creators to help you find your</Text>
