@@ -6,42 +6,43 @@ const HighlightedHeader = styled.h1`
     font-style: normal;
     font-weight: bold;
     font-size: 72px;
-    line-height: 97%;
+    line-height: 10px;
     letter-spacing: -2px;
-    color: #000000
+    color: #FFFFFF;
 `;
 
 const Text = styled.p`
     font-family: 'Outfit', sans-serif;
     font-style: normal;
     font-weight: 300;
-    font-size: 24px;
+    font-size: 14px;
     line-height: 133%;
     letter-spacing: 1px;
-    color: #000000;
+    color: #FFFFFF;
 `;
 
 const Footer = () => {
     const { height, width } = useWindowDimensions();
 
     return (
-        <div style={{ width, height: height * .2 }}>
-            <div style={{ paddingLeft: '5%', paddingRight: '3%'}}>
-                <HighlightedHeader style={{ fontSize: 36 }}>SHW/RM</HighlightedHeader>
+        <div style={{ width, height: height * .2, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+            <div style={{ width, height: height * .3, background: "linear-gradient(180deg, #FFFFFF, #5DA27D 60%)", position: 'absolute', zIndex: -1 }} />
+            <div style={{ paddingLeft: '5%', paddingRight: '3%', paddingBottom: 4 }}>
+                <HighlightedHeader style={{ fontSize: 36 }}>cultured // seattle</HighlightedHeader>
+                <Text>got culture? get cultured.</Text>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div style={{ display: 'flex', flexDirection: 'row', width: '18%', justifyContent: 'space-between' }}>
-                        <Text style={{ fontSize: 14 }}>Contact Us</Text>
-                        <Text style={{ fontSize: 14 }}>FAQ</Text>
-                        <Text style={{ fontSize: 14 }}>Instagram</Text>
+                        <Text>Contact Us</Text>
+                        <Text>FAQ</Text>
+                        <Text>Instagram</Text>
                     </div>
-                    <Text style={{ fontSize: 14 }}>Designed in Seattle, WA</Text>
+                    <Text>Designed in Seattle, WA</Text>
                     <div style={{ display: 'flex', flexDirection: 'row', width: '15%', justifyContent: 'space-between' }}>
-                        <Text style={{ fontSize: 14 }}>Privacy - Terms</Text>
-                        <Text style={{ fontSize: 14 }}>&copy; 2022</Text>
+                        <Text>Privacy - Terms</Text>
+                        <Text>&copy; 2022</Text>
                     </div>
                 </div>
             </div>
-            {/* <div style={{ backgroundColor: '#5DA27D', width, height: height * .2, position: 'fixed', bottom: 0 }}/> */}
         </div>
     );
 };
