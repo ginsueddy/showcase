@@ -68,7 +68,7 @@ const Home = () => {
                         <HighlightedHeader style={{ marginTop: -15, marginBottom: -15, textAlign: 'center' }}>to explore</HighlightedHeader>
                         <HeaderText style={{ textAlign: 'center' }}>your city</HeaderText>
                     </div>
-                    <Link to="/booking" style={{ textDecoration: 'none' }}>
+                    <Link to="/logistics" style={{ textDecoration: 'none' }}>
                         <Button text="LET'S GO"/>
                     </Link>
                 </div>
@@ -88,7 +88,7 @@ const Home = () => {
                     <List listItems={['Tell us where you\'re going,', 'What you want to do,', 'Your budget and preferences', 'We\'ll handle the rest!']}/>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                    <Link to="/booking" style={{ textDecoration: 'none' }}>
+                    <Link to="/logistics" style={{ textDecoration: 'none' }}>
                         <Button text="TAKE THE QUIZ"/>
                     </Link>
                 </div>
@@ -105,7 +105,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 150, marginBottom: 150 }}>
-                        <Link to="/booking" style={{ textDecoration: 'none' }}>
+                        <Link to="/logistics" style={{ textDecoration: 'none' }}>
                             <Button text="GET STARTED"/>
                         </Link>
                 </div>

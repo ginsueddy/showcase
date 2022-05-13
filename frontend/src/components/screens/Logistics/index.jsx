@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import useWindowDimensions from '../../../hooks/useWindowDimensions';
 import Header from '../../shared/Header';
 import Footer from "../../shared/Footer";
 
@@ -37,7 +38,7 @@ const QuizOption = ({ text }) => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                marginTop: 30
+                marginTop: 24
             }}
             onMouseEnter={() => setHoverd(!hovered)}
             onMouseLeave={() => setHoverd(!hovered)}
@@ -48,17 +49,26 @@ const QuizOption = ({ text }) => {
 };
 
 const Logistics = () => {
+    const { height, width } = useWindowDimensions();
+
     return (
         <>
             <Header />
-                <HeaderText>Where are you going?</HeaderText>
-                <div style={{ display: 'flex', alignItems: 'center', marginTop: 42, flexDirection: 'column' }}>
-                    <QuizOption text="University District" />
-                    <QuizOption text="Capitol Hill" />
-                    <QuizOption text="Ballard" />
-                    <QuizOption text="Fremont" />
-                    <QuizOption text="International District" />
-                    <QuizOption text="I don't know yet" />
+                <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', paddingTop: 24 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', width: width * 0.75, marginBottom: 40 }}>
+                        <Text style={{ fontSize: 20 }}>1. Event Details</Text>
+                        <Text style={{ fontSize: 20 }}>2. Preferences</Text>
+                        <Text style={{ fontSize: 20 }}>3. Your Custom Itinerary</Text>
+                    </div>
+                    <HeaderText>Where are you going?</HeaderText>
+                    <div style={{ marginTop: 16 }}>
+                        <QuizOption text="University District" />
+                        <QuizOption text="Capitol Hill" />
+                        <QuizOption text="Ballard" />
+                        <QuizOption text="Fremont" />
+                        <QuizOption text="International District" />
+                        <QuizOption text="I don't know yet" />
+                    </div>
                 </div>
             <Footer />
         </>
