@@ -60,7 +60,7 @@ const Home = () => {
     
     return (
         <>
-            <Header />
+            <Header isLanding/>
             <div style={{ height: height * .9, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, justifyContent: 'space-evenly' }}>
                     <div>
