@@ -49,7 +49,7 @@ const Header = ({ isLanding }) => {
                                 <div onClick={() => console.log()} style={{ borderWidth: '1.5px', borderStyle: 'solid', borderColor: '#C7CBC7', backgroundColor: 'white', marginLeft: 16, marginRight: 24, paddingLeft: 32, paddingRight: 32, paddingTop: 4, paddingBottom: 4, borderRadius: 30, display: 'flex', alignItems: 'center' }}>
                                     <ButtonText>LOGIN</ButtonText>
                                 </div>
-                                <div onClick={() => console.log()} style={{ backgroundColor: '#DEC6AF', paddingLeft: 16, paddingRight: 16, paddingTop: 4, paddingBottom: 4, borderRadius: 30, display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                                <div onClick={() => console.log()} style={{ backgroundColor: '#DEC6AF', paddingLeft: 24, paddingRight: 24, paddingTop: 4, paddingBottom: 4, borderRadius: 30, display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
                                     <ButtonText style={{ color: 'white' }}>EXPLORE NOW</ButtonText>
                                 </div>
                             </div>

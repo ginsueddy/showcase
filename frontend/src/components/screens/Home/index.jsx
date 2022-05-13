@@ -5,6 +5,9 @@ import useWindowDimensions from '../../../hooks/useWindowDimensions';
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
 import List from '../../shared/List';
+import BreakfastImage from '../../../assets/food.png';
+import ParkImage from '../../../assets/park.png';
+import DiscoImage from '../../../assets/disco.png';
 
 const HeaderText = styled.h1`
     font-family: 'Syne', sans-serif;
@@ -61,7 +64,9 @@ const Home = () => {
     return (
         <>
             <Header isLanding/>
-            <div style={{ height: height * .9, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div style={{ height: height * .9, display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                <div style={{ height: 400, width: 400, background: "linear-gradient(120deg, #FFFFFF, #E53552 90%)", position: 'absolute', right: -320, top: height * 0.9 / 3, zIndex: -1, borderRadius: 140, transform: 'rotate(330deg)' }}/>
+                <div style={{ height: 700, width: 400, background: "linear-gradient(120deg, #FFFFFF, #E53552 90%)", position: 'absolute', left: -300, bottom: 100, zIndex: -1, borderRadius: 150, transform: 'rotate(160deg)' }}/>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, justifyContent: 'space-evenly' }}>
                     <div>
                         <HeaderText style={{ textAlign: 'center' }}>The easiest way</HeaderText>
@@ -77,20 +82,30 @@ const Home = () => {
                     <ChevronDown size="48" title="view more" />
                 </div>
             </div>
-            <div style={{ height: height * .9, paddingLeft: '10%' }}>
-                <div>
-                    <HeaderText style={{ textAlign: 'start' }}>Make plans in a</HeaderText>
-                    <HighlightedHeader style={{ color: '#E69C57'}}>brand new way</HighlightedHeader>
-                </div>
-                <Text style={{ textAlign: 'start' }}>Our interactive quiz learns about what you like </Text>
-                <Text style={{ textAlign: 'start' }}>and builds a custom itinerary just for you.</Text>
-                <div style={{ marginBottom: 40, paddingLeft: 12 }}>
-                    <List listItems={['Tell us where you\'re going,', 'What you want to do,', 'Your budget and preferences', 'We\'ll handle the rest!']}/>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                    <Link to="/logistics" style={{ textDecoration: 'none' }}>
-                        <Button text="TAKE THE QUIZ"/>
-                    </Link>
+            <div style={{ height: height * .9, paddingLeft: '10%', paddingTop: '5%' }}>
+                <div style={{ height: 400, width: 400, background: "linear-gradient(120deg, #FFFFFF, #ECB35E 90%)", position: 'absolute', right: -350, zIndex: -1, borderRadius: 160, transform: 'rotate(330deg)' }} />
+                <div style={{ display: 'flex' }}>
+                    <div>
+                        <div>
+                            <HeaderText style={{ textAlign: 'start' }}>Make plans in a</HeaderText>
+                            <HighlightedHeader style={{ color: '#E69C57'}}>brand new way</HighlightedHeader>
+                        </div>
+                        <Text style={{ textAlign: 'start' }}>Our interactive quiz learns about what you like </Text>
+                        <Text style={{ textAlign: 'start' }}>and builds a custom itinerary just for you.</Text>
+                        <div style={{ marginBottom: 40, paddingLeft: 12 }}>
+                            <List listItems={['Tell us where you\'re going,', 'What you want to do,', 'Your budget and preferences', 'We\'ll handle the rest!']}/>
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                            <Link to="/logistics" style={{ textDecoration: 'none' }}>
+                                <Button text="TAKE THE QUIZ"/>
+                            </Link>
+                        </div>
+                    </div>
+                    <div style={{ paddingLeft: 40, paddingTop: 60, display: 'flex', flexWrap: 'wrap', width: width * 0.4, justifyContent: 'center' }}>
+                        <img style={{ width: 250, height: 300, borderRadius: 20, objectFit: 'cover', marginRight: 30, marginBottom: 30 }} src={BreakfastImage} alt="breakfast" />
+                        <img style={{ width: 250, height: 300, borderRadius: 20, objectFit: 'cover' }} src={ParkImage} alt="park" />
+                        <img style={{ width: 250, height: 300, borderRadius: 20, objectFit: 'cover', marginLeft: 30 }} src={DiscoImage} alt="disco" />
+                    </div>
                 </div>
             </div>
             <div>

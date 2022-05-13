@@ -119,7 +119,7 @@ const Logistics = () => {
             }, 3000)
         }
 
-    }, [index])
+    }, [index]);
     
     return (
         <>
