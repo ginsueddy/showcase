@@ -29,8 +29,7 @@ const Footer = () => {
             <div style={{ width, height: height * .3, background: "linear-gradient(180deg, #FFFFFF, #5DA27D 60%)", position: 'absolute', zIndex: -1 }} />
             <div style={{ paddingLeft: '5%', paddingRight: '3%', paddingBottom: 4 }}>
                 <HighlightedHeader style={{ fontSize: 36 }}>cultured // seattle</HighlightedHeader>
-                <Text>got culture? get cultured.</Text>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 48 }}>
                     <div style={{ display: 'flex', flexDirection: 'row', width: '18%', justifyContent: 'space-between' }}>
                         <Text>Contact Us</Text>
                         <Text>FAQ</Text>

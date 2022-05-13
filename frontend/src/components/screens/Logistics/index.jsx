@@ -64,5 +64,5 @@ const Logistics = () => {
         </>
     );
 };
-
+// party.js
 export default Logistics;

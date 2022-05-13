@@ -34,7 +34,7 @@ const Header = () => {
     const { height, width } = useWindowDimensions();
 
     return (
-        <div style={{ width, height: height * .2 }}>
+        <div style={{ width, height: height * .1 }}>
             <div style={{ paddingLeft: '5%', paddingRight: '3%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <HighlightedHeader style={{ fontSize: 36 }}>SHW/RM</HighlightedHeader>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
