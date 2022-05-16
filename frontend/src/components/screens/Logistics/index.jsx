@@ -42,12 +42,12 @@ const logisticsQuiz = [
         stage: 'preferences',
         options: ['Trying a new restaurant', 'See what\'s new on Netflix', 'Reading a good book', 'Spending time outside', 'Something else']
     },
-    {
-        question: 'What\'s your sign?',
-        responseType: 'select',
-        stage: 'preferences',
-        options: ['Aries', 'Libra', 'Aquarius', 'Scorpio', 'Taurus', 'Capricorn', 'Gemini', 'Virgo', 'Cancer', 'Saggitarius', 'I don\'t know']
-    },
+    // {
+    //     question: 'What\'s your sign?',
+    //     responseType: 'select',
+    //     stage: 'preferences',
+    //     options: ['Aries', 'Libra', 'Aquarius', 'Scorpio', 'Taurus', 'Capricorn', 'Gemini', 'Virgo', 'Cancer', 'Saggitarius', 'I don\'t know']
+    // },
     {
         question: 'What genre of music do you listen to?',
         responseType: 'select',
@@ -147,7 +147,7 @@ const Logistics = () => {
                         {
                             (logisticsQuiz[index].responseType === 'summary' && logisticsQuiz[index].stage === 'eventDetails') && (
                                 <div style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly' }}>
-                                    <Text style={{ fontWeight: 'lighter' }}>Fremont, Saturday, March 12th, 10am - 2pm, $$$ Budget</Text>
+                                    <Text style={{ fontWeight: 'lighter' }}>Fremont, Wednesday, April 6th, 4pm - 8pm, $$$ Budget</Text>
                                     <Text style={{ fontWeight: 'lighter' }}>Now that we've got your logistics down, we'll ask you a couple questions about your preferences and what you like to do for fun!</Text>
                                     <QuizOption text="Let's do it" onClick={() => setIndex(index + 1)} />
                                 </div>

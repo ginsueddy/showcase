@@ -29,11 +29,11 @@ const Text = styled.div`
 const Itinerary = () => {
     const { height, width } = useWindowDimensions();
 
-    return (
+    return (    
         <div style={{ height: height * 0.7, display: 'flex', justifyContent: 'center' }}>
             <div style={{ paddingLeft: width * 0.05 }}>
                 <Header style={{ marginBottom: 16 }}>Your Itinerary</Header>
-                <Text style={{ fontWeight: 500, fontSize: 22 }}>Wednesday, April 6th from 5pm - 10pm</Text>
+                <Text style={{ fontWeight: 500, fontSize: 22 }}>Wednesday, April 6th from 4pm - 8pm</Text>
                 <div style={{ display: 'flex', flexDirection: 'column', flexWrap: 'wrap', height: 600, justifyContent: 'center', maxWidth: 600 }}>
                     <img style={{ width: 250, height: 250, marginBottom: 40 }} src={elImage} alt="el camino" />
                     <img style={{ width: 250, height: 250, marginBottom: 40 }} src={vinImage} alt="fremont vintage mall" />

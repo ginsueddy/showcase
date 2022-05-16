@@ -83,7 +83,7 @@ const Home = () => {
                 </div>
             </div>
             <div style={{ height: height * .9, paddingLeft: '10%', paddingTop: '5%' }}>
-                <div style={{ height: 400, width: 400, background: "linear-gradient(120deg, #FFFFFF, #ECB35E 90%)", position: 'absolute', right: -350, zIndex: -1, borderRadius: 160, transform: 'rotate(330deg)' }} />
+                {/* <div style={{ height: 400, width: 400, background: "linear-gradient(120deg, #FFFFFF, #ECB35E 90%)", position: 'absolute', right: -350, zIndex: -1, borderRadius: 160, transform: 'rotate(330deg)' }} /> */}
                 <div style={{ display: 'flex' }}>
                     <div>
                         <div>
