@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
 
 const HighlightedHeader = styled.h1`
@@ -46,12 +47,16 @@ const Header = ({ isLanding }) => {
                             <div style={{ display: 'flex', flexDirection: 'row', width: '18%', justifyContent: 'space-between' }}>
                                 <Text style={{ fontSize: 14, paddingLeft: 16, paddingRight: 16 }}>ABOUT</Text>
                                 <Text style={{ fontSize: 14, paddingLeft: 16, paddingRight: 16  }}>FAQ</Text>
-                                <div onClick={() => console.log()} style={{ borderWidth: '1.5px', borderStyle: 'solid', borderColor: '#C7CBC7', backgroundColor: 'white', marginLeft: 16, marginRight: 24, paddingLeft: 32, paddingRight: 32, paddingTop: 4, paddingBottom: 4, borderRadius: 30, display: 'flex', alignItems: 'center' }}>
-                                    <ButtonText>LOGIN</ButtonText>
-                                </div>
-                                <div onClick={() => console.log()} style={{ backgroundColor: '#DEC6AF', paddingLeft: 24, paddingRight: 24, paddingTop: 4, paddingBottom: 4, borderRadius: 30, display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
-                                    <ButtonText style={{ color: 'white' }}>EXPLORE NOW</ButtonText>
-                                </div>
+                                <Link to="/login" style={{ textDecoration: 'none' }}>
+                                    <div onClick={() => console.log()} style={{ borderWidth: '1.5px', borderStyle: 'solid', borderColor: '#C7CBC7', backgroundColor: 'white', marginLeft: 16, marginRight: 24, paddingLeft: 32, paddingRight: 32, paddingTop: 12, paddingBottom: 12, borderRadius: 30, display: 'flex', alignItems: 'center' }}>
+                                        <ButtonText>LOGIN</ButtonText>
+                                    </div>
+                                </Link>
+                                <Link to="/logistics" style={{ textDecoration: 'none' }}>
+                                    <div style={{ backgroundColor: '#DEC6AF', paddingLeft: 24, paddingRight: 24, paddingTop: 12, paddingBottom: 12, borderRadius: 30, display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                                        <ButtonText style={{ color: 'white' }}>EXPLORE NOW</ButtonText>
+                                    </div>
+                                </Link>
                             </div>
                         </div>
                     )

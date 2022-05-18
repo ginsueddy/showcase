@@ -120,9 +120,9 @@ const Home = () => {
                     </div>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 150, marginBottom: 150 }}>
-                        <Link to="/logistics" style={{ textDecoration: 'none' }}>
-                            <Button text="GET STARTED"/>
-                        </Link>
+                    <Link to="/logistics" style={{ textDecoration: 'none' }}>
+                        <Button text="GET STARTED"/>
+                    </Link>
                 </div>
             </div>
             <HeaderText style={{ lineHeight: 1, fontWeight: 'bold', overflow: 'hidden', whiteSpace: 'nowrap', marginBottom: -50 }}>music, food, gaming, local, parks, dance, skincare, arts, cocktails, fashion, photography, jewlery, local, crafts, live</HeaderText>
