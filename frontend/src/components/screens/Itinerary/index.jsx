@@ -26,7 +26,7 @@ const Text = styled.div`
     color: #000000;
 `;
 
-const Itinerary = () => {
+const Itinerary = ({ setShowAccountCreation }) => {
     const { height, width } = useWindowDimensions();
 
     return (    
@@ -60,6 +60,7 @@ const Itinerary = () => {
                         },
                     ]}
                     isItinerary
+                    setShowAccountCreation={setShowAccountCreation}
                 />
             </div>
         </div>

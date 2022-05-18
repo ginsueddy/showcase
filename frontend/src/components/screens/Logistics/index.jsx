@@ -5,6 +5,7 @@ import Header from '../../shared/Header';
 import Footer from "../../shared/Footer";
 import LoadingSpinner from '../../shared/LoadingSpinner';
 import Itinerary from '../Itinerary';
+import AccountCreation from '../AccountCreation';
 
 const logisticsQuiz = [
     {
@@ -111,6 +112,7 @@ const Logistics = () => {
 
     const [index, setIndex] = useState(0);
     const [showItinerary, setShowItinerary] = useState(false);
+    const [showAccountCreation, setShowAccountCreation] = useState(false);
 
     useEffect(() => {
         if (index === logisticsQuiz.length - 1) {
@@ -120,13 +122,17 @@ const Logistics = () => {
         }
 
     }, [index]);
+
+    if (showAccountCreation) {
+        return <AccountCreation setShowAccountCreation={setShowAccountCreation} />
+    }
     
     return (
         <>
             <Header />
             {
                 showItinerary ? (
-                    <Itinerary />
+                    <Itinerary setShowAccountCreation={setShowAccountCreation} />
                 ) : (
                     <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', paddingTop: 24, height: height * 0.7 }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', width: width * 0.75, marginBottom: 40 }}>
