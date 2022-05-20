@@ -1,47 +1,49 @@
 import styled from 'styled-components';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
 
-const HighlightedHeader = styled.h1`
+const HighlightedHeader = styled.div`
     font-family: 'Syne', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 72px;
-    line-height: 97%;
-    letter-spacing: -2px;
-    color: #000000
+    letter-spacing: -1px;
+    color: #FFFFFF;
 `;
 
-const Text = styled.p`
+const Text = styled.div`
     font-family: 'Outfit', sans-serif;
     font-style: normal;
     font-weight: 300;
-    font-size: 24px;
-    line-height: 133%;
+    font-size: 14px;
     letter-spacing: 1px;
-    color: #000000;
+    color: #FFFFFF;
 `;
 
 const Footer = () => {
     const { height, width } = useWindowDimensions();
 
     return (
-        <div style={{ width, height: height * .2 }}>
-            <div style={{ paddingLeft: '5%', paddingRight: '3%'}}>
-                <HighlightedHeader style={{ fontSize: 36 }}>SHW/RM</HighlightedHeader>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <div style={{ display: 'flex', flexDirection: 'row', width: '18%', justifyContent: 'space-between' }}>
-                        <Text style={{ fontSize: 14 }}>Contact Us</Text>
-                        <Text style={{ fontSize: 14 }}>FAQ</Text>
-                        <Text style={{ fontSize: 14 }}>Instagram</Text>
+        <div style={{ width, height: height * .2, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+            <div style={{ width, height: height * .3, background: "linear-gradient(180deg, #FFFFFF, #5DA27D 60%)", position: 'absolute', zIndex: -1 }} />
+            <div style={{ paddingLeft: '5%', paddingRight: '3%', paddingBottom: 20 }}>
+                <HighlightedHeader style={{ fontSize: 36 }}>cultured // seattle</HighlightedHeader>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 48 }}>
+                    <div style={{ display: 'flex', flexDirection: 'row', flex: 1 }}>
+                        <Text style={{ marginRight: 16 }}>Contact Us</Text>
+                        <Text style={{ marginRight: 16 }}>FAQ</Text>
+                        <Text style={{ marginRight: 16 }}>Instagram</Text>
                     </div>
-                    <Text style={{ fontSize: 14 }}>Designed in Seattle, WA</Text>
-                    <div style={{ display: 'flex', flexDirection: 'row', width: '15%', justifyContent: 'space-between' }}>
-                        <Text style={{ fontSize: 14 }}>Privacy - Terms</Text>
-                        <Text style={{ fontSize: 14 }}>&copy; 2022</Text>
+                    {
+                        width > 800 && (
+                            <Text style={{ flex: 1 }}>Designed in Seattle, WA</Text>
+                        )
+                    }
+                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                        <Text style={{ marginRight: 16, marginLeft: 16 }}>Privacy - Terms</Text>
+                        <Text>&copy; 2022</Text>
                     </div>
                 </div>
             </div>
-            {/* <div style={{ backgroundColor: '#5DA27D', width, height: height * .2, position: 'fixed', bottom: 0 }}/> */}
         </div>
     );
 };
