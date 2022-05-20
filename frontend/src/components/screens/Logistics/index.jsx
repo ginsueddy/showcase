@@ -43,12 +43,12 @@ const logisticsQuiz = [
         responseType: 'summary',
         stage: 'eventDetails'
     },
-    {
-        question: 'Will you be spending time with friends or planning for something solo?',
-        responseType: 'select',
-        stage: 'preferences',
-        options: ['I have a large group to plan for', 'Just for a couple of friends', 'Something to do by myself']
-    },
+    // {
+    //     question: 'Will you be spending time with friends or planning for something solo?',
+    //     responseType: 'select',
+    //     stage: 'preferences',
+    //     options: ['I have a large group to plan for', 'Just for a couple of friends', 'Something to do by myself']
+    // },
     {
         question: 'How active are you?',
         responseType: 'select',
@@ -158,9 +158,9 @@ const Logistics = () => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Header />
-            <div style={{ display: 'flex', justifyContent: 'center', flex: 1, paddingBottom: 40 }}>
+            <div style={{ display: 'flex', justifyContent: 'center', flex: 1, paddingBottom: 48 }}>
                 <div>
-                    <div style={{ display: 'flex', marginBottom: 40 }}>
+                    <div style={{ display: 'flex', marginBottom: 48 }}>
                         <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'eventDetails' ? 'bold' : 'normal' }}>1. Event Details</Text>
                         <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'preferences' ? 'bold' : 'normal', marginLeft: '7.5rem', marginRight: '7.5rem' }}>2. Preferences</Text>
                         <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'itinerary' ? 'bold' : 'normal' }}>3. Your Custom Itinerary</Text>
@@ -181,17 +181,17 @@ const Logistics = () => {
                         }
                         {
                             (logisticsQuiz[index].responseType === 'summary' && logisticsQuiz[index].stage === 'eventDetails') && (
-                                <div style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly' }}>
-                                    <Text style={{ fontWeight: 'lighter' }}>Fremont, Wednesday, April 6th, 4pm - 8pm, $$$ Budget</Text>
-                                    <Text style={{ fontWeight: 'lighter' }}>Now that we've got your logistics down, we'll ask you a couple questions about your preferences and what you like to do for fun!</Text>
+                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 40 }}>
+                                    <Text style={{ fontWeight: 200 }}>Fremont, Wednesday, April 6th, 4pm - 8pm, $$$ Budget</Text>
+                                    <Text style={{ fontWeight: 300, marginTop: 40, marginBottom: 40, maxWidth: 750 }}>Now that we've got your logistics down, we'll ask you a couple questions about your preferences and what you like to do for fun!</Text>
                                     <QuizOption text="Let's do it" onClick={() => setIndex(index + 1)} />
                                 </div>
                             )
                         }
                         {
                             (logisticsQuiz[index].responseType === 'summary' && logisticsQuiz[index].stage === 'itinerary') && (
-                                <div style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly' }}>
-                                    <Text style={{ fontWeight: 'lighter' }}>Thanks for answering our questions! Sit back while we put together your custom itinerary.</Text>
+                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 40 }}>
+                                    <Text style={{ fontWeight: 300, marginTop: 80, marginBottom: 80, maxWidth: 750 }}>Thanks for answering our questions! Sit back while we put together your custom itinerary.</Text>
                                     <LoadingSpinner />
                                 </div>
                             )
