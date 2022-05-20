@@ -47,7 +47,7 @@ const Login = () => {
             setIdToken(firebaseUser.user.getIdToken());
             setCurrentUserFromFirebase(firebaseUser);
         }).then(() => {
-            // navigate('/');
+            navigate('/');
         }).catch((e) => {
             console.log('invalid sign in');
             alert(e);

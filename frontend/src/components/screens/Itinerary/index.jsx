@@ -26,11 +26,11 @@ const Text = styled.div`
     color: #000000;
 `;
 
-const Itinerary = ({ setShowAccountCreation }) => {
+const Itinerary = () => {
     const { height, width } = useWindowDimensions();
 
     return (    
-        <div style={{ height: height * 0.7, display: 'flex', justifyContent: 'center' }}>
+        <div style={{ display: 'flex' }}>
             <div style={{ paddingLeft: width * 0.05 }}>
                 <Header style={{ marginBottom: 16 }}>Your Itinerary</Header>
                 <Text style={{ fontWeight: 500, fontSize: 22 }}>Wednesday, April 6th from 4pm - 8pm</Text>
@@ -40,7 +40,7 @@ const Itinerary = ({ setShowAccountCreation }) => {
                     <img style={{ width: 250, height: 250 }} src={livImage} alt="olvia rodrigo" />
                 </div>
             </div>
-            <div style={{ marginLeft: 200}}>
+            <div style={{ marginLeft: 200 }}>
                 <List
                     listItems={[
                         {
@@ -60,7 +60,6 @@ const Itinerary = ({ setShowAccountCreation }) => {
                         },
                     ]}
                     isItinerary
-                    setShowAccountCreation={setShowAccountCreation}
                 />
             </div>
         </div>

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Context as UserContext } from '../../../context/UserContext';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
+import { useContext } from 'react';
 
 const HighlightedHeader = styled.h1`
     font-family: 'Syne', sans-serif;
@@ -32,6 +34,7 @@ const ButtonText = styled.div`
 
 
 const Header = ({ isLanding }) => {
+    const { state: { user }} = useContext(UserContext);
     const { height, width } = useWindowDimensions();
 
     return (
@@ -49,9 +52,9 @@ const Header = ({ isLanding }) => {
                                     width > 720 && (
                                         <>
                                             <Text style={{ fontSize: 14, paddingLeft: 16, paddingRight: 16 }}>ABOUT</Text>
-                                            <Link to="/login" style={{ textDecoration: 'none' }}>
-                                                <div onClick={() => console.log()} style={{ borderWidth: '1.5px', borderStyle: 'solid', borderColor: '#C7CBC7', backgroundColor: 'white', marginLeft: 16, marginRight: 24, paddingLeft: 32, paddingRight: 32, paddingTop: 12, paddingBottom: 12, borderRadius: 30, display: 'flex', alignItems: 'center' }}>
-                                                    <ButtonText>LOGIN</ButtonText>
+                                            <Link to={user ? '/account' : '/login'} style={{ textDecoration: 'none' }}>
+                                                <div style={{ borderWidth: '1.5px', borderStyle: 'solid', borderColor: '#C7CBC7', backgroundColor: 'white', marginLeft: 16, marginRight: 24, paddingLeft: 32, paddingRight: 32, paddingTop: 12, paddingBottom: 12, borderRadius: 30, display: 'flex', alignItems: 'center' }}>
+                                                    <ButtonText>{user ? 'ACCOUNT' : 'LOGIN'}</ButtonText>
                                                 </div>
                                             </Link>
                                         </>

@@ -35,7 +35,6 @@ function App() {
         return onAuthStateChanged(auth, (firebaseUser) => {
             if (firebaseUser) {
                 fetchServerUser(firebaseUser).then((currentUser) => {
-                    console.log(currentUser);
                     setCurrentUserFromFirebase(currentUser);
                 });
             }
