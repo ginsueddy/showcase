@@ -59,7 +59,7 @@ abbr[title] {
     background: #5DA27D;
     border-radius: 6px;
     font-weight: bold;
-    color: #5DA27D;
+    color: white;
 }
 
 .react-calendar__tile--hasActive:enabled:hover,
