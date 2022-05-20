@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { Context as UserContext } from '../../../context/UserContext';
 import Header from '../../shared/Header';
 import Footer from "../../shared/Footer";
 
@@ -18,6 +20,7 @@ const Text = styled.div`
     font-weight: 300;
     font-size: 20px;
     letter-spacing: 1px;
+    color: black;
 `;
 
 const ButtonText = styled.div`
@@ -50,18 +53,27 @@ const ItinearyCard = ({ }) => {
 };
 
 const Account = () => {
+    const { state: { user }} = useContext(UserContext);
+
+    if (!user) {
+        return <div></div>
+    }
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Header />
             <div style={{ display: 'flex', justifyContent: 'center', flex: 1, paddingBottom: 40, paddingLeft: 32, paddingRight: 32 }}>
                 <div>
-                    <HeaderText>Krystal's Itinerary History</HeaderText>
+                    <HeaderText>{`${user.name.substr(0, user.name.indexOf(' '))}'s Itinerary History`}</HeaderText>
                     <div style={{ display: 'flex' , justifyContent: 'space-between', alignItems: 'center', paddingBottom: 16, borderBottom: '1px solid black', marginBottom: 32, marginTop: 32 }}>
                         <Text style={{ fontWeight: 300, fontSize: 24 }}>Itineraries</Text>
-                        <Text style={{ fontWeight: 500, fontSize: 24, color: '#5DA27D' }}>+ Make a new plan</Text>
+                        <Link to="/logistics" style={{ textDecoration: 'none' }}>
+                            <Text style={{ fontWeight: 500, fontSize: 24, color: '#5DA27D' }}>+ Make a new plan</Text>
+                        </Link>
                     </div>
-                    <ItinearyCard />
-                    <ItinearyCard />
+                    <Link to="/itinerary" style={{ textDecoration: 'none' }}>
+                        <ItinearyCard />
+                    </Link>
                 </div>
             </div>
             <Footer />

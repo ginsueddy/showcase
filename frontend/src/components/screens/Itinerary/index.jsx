@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
+import { Context as UserContext } from '../../../context/UserContext';
 import List from '../../shared/List';
 import elImage from '../../../assets/el.png';
 import vinImage from '../../../assets/vin.png';
 import livImage from '../../../assets/liv.png';
+import { AccountCreationForm } from '../AccountCreation';
 
 const Header = styled.div`
     font-family: 'Syne';
@@ -26,11 +29,28 @@ const Text = styled.div`
     color: #000000;
 `;
 
-const Itinerary = ({ setShowAccountCreation }) => {
+const Itinerary = ({  }) => {
     const { height, width } = useWindowDimensions();
+    const navigate = useNavigate();
+
+    const { state: { user }} = useContext(UserContext);
+
+    const [showAccountCreation, setShowAccountCreation] = useState(false);
+
+    const onClickSavePlans = () => {
+        if (user) {
+            navigate('/account');
+        } else {
+            setShowAccountCreation(true);
+        }
+    }
+
+    if (showAccountCreation) {
+        return <AccountCreationForm setShowAccountCreation={setShowAccountCreation} />;
+    }
 
     return (    
-        <div style={{ height: height * 0.7, display: 'flex', justifyContent: 'center' }}>
+        <div style={{ display: 'flex' }}>
             <div style={{ paddingLeft: width * 0.05 }}>
                 <Header style={{ marginBottom: 16 }}>Your Itinerary</Header>
                 <Text style={{ fontWeight: 500, fontSize: 22 }}>Wednesday, April 6th from 4pm - 8pm</Text>
@@ -40,7 +60,7 @@ const Itinerary = ({ setShowAccountCreation }) => {
                     <img style={{ width: 250, height: 250 }} src={livImage} alt="olvia rodrigo" />
                 </div>
             </div>
-            <div style={{ marginLeft: 200}}>
+            <div style={{ marginLeft: 200 }}>
                 <List
                     listItems={[
                         {
@@ -60,7 +80,7 @@ const Itinerary = ({ setShowAccountCreation }) => {
                         },
                     ]}
                     isItinerary
-                    setShowAccountCreation={setShowAccountCreation}
+                    onClickSavePlans={onClickSavePlans}
                 />
             </div>
         </div>

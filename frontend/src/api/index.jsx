@@ -12,11 +12,11 @@ export const isTokenValid = (token) => {
 };
   
 export const getCurrentUser = () => {
-    return get('/api/user').then((response) => {
-        return response.user;
+    return get('/api/adminUser').then((response) => {
+      return response.user;
     }).catch((error) => {
-        console.error('ERROR: getCurrentUser');
-        console.log(error);
-        throw error;
+      console.error('ERROR: getCurrentAdminUser');
+      console.log(error);
+      throw error;
     });
-};
+  };

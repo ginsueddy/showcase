@@ -43,6 +43,7 @@ const Login = () => {
         const auth = getAuth(firebaseApp);
 
         signInWithEmailAndPassword(auth, email, password).then((firebaseUser) => {
+            console.log(firebaseUser);
             setIdToken(firebaseUser.user.getIdToken());
             setCurrentUserFromFirebase(firebaseUser);
         }).then(() => {
@@ -75,7 +76,7 @@ const Login = () => {
                 <label class="custom-field">
                     <input id="password-field" type="password" value={password} onChange={(e) => setPassword(e.target.value)} style={{ borderColor: password.length > 0 ? '#5DA27D' : '#C7CBC7'}} />
                 </label>
-                <div onClick={() => console.log()} style={{ backgroundColor: '#5DA27D', paddingLeft: 32, paddingRight: 32, paddingTop: 12, paddingBottom: 12, borderRadius: 30, alignItems: 'center', marginTop: 40 }}>
+                <div onClick={handleSubmit} style={{ backgroundColor: '#5DA27D', paddingLeft: 32, paddingRight: 32, paddingTop: 12, paddingBottom: 12, borderRadius: 30, alignItems: 'center', marginTop: 40 }}>
                     <Label style={{ color: 'white', fontWeight: 400, fontSize: 24 }}>SUBMIT</Label>
                 </div>
             </div>

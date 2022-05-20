@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
-import useWindowDimensions from '../../../hooks/useWindowDimensions';
+import moment from 'moment';
+import { Context as UserContext } from '../../../context/UserContext';
 import Header from '../../shared/Header';
 import Footer from "../../shared/Footer";
 import LoadingSpinner from '../../shared/LoadingSpinner';
 import QuizCalendar from '../../shared/QuizCalendar';
 import Itinerary from '../Itinerary';
-import AccountCreation from '../AccountCreation';
 
 const logisticsQuiz = [
     {
@@ -32,23 +32,23 @@ const logisticsQuiz = [
         stage: 'eventDetails',
         options: ['N/A', '$', '$$', '$$$', '$$$$', 'I don\'t know yet']
     },
-    {
-        question: 'Is everyone in your group 21+?',
-        responseType: 'select',
-        stage: 'eventDetails',
-        options: ['Yes', 'No', 'I\'m not interested in 21+ activities']
-    },
+    // {
+    //     question: 'Is everyone in your group 21+?',
+    //     responseType: 'select',
+    //     stage: 'eventDetails',
+    //     options: ['Yes', 'No', 'I\'m not interested in 21+ activities']
+    // },
     {
         question: 'You\'re almost there!',
         responseType: 'summary',
         stage: 'eventDetails'
     },
-    {
-        question: 'Will you be spending time with friends or planning for something solo?',
-        responseType: 'select',
-        stage: 'preferences',
-        options: ['I have a large group to plan for', 'Just for a couple of friends', 'Something to do by myself']
-    },
+    // {
+    //     question: 'Will you be spending time with friends or planning for something solo?',
+    //     responseType: 'select',
+    //     stage: 'preferences',
+    //     options: ['I have a large group to plan for', 'Just for a couple of friends', 'Something to do by myself']
+    // },
     {
         question: 'How active are you?',
         responseType: 'select',
@@ -121,10 +121,11 @@ const QuizOption = ({ text, onClick }) => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                marginTop: 24
+                marginTop: 24,
+                cursor: 'pointer'
             }}
-            onMouseEnter={() => setHoverd(!hovered)}
-            onMouseLeave={() => setHoverd(!hovered)}
+            onMouseEnter={() => setHoverd(true)}
+            onMouseLeave={() => setHoverd(false)}
             onClick={onClick}
         >
             <Text style={{ color: hovered ? 'white' : 'black' }}>{text}</Text>
@@ -133,11 +134,11 @@ const QuizOption = ({ text, onClick }) => {
 };
 
 const Logistics = () => {
-    const { height, width } = useWindowDimensions();
+    const { state: { user }} = useContext(UserContext);
 
     const [index, setIndex] = useState(0);
     const [showItinerary, setShowItinerary] = useState(false);
-    const [showAccountCreation, setShowAccountCreation] = useState(false);
+    const [quizResponse, setQuizResponses] = useState([]);
 
     const [date, setDate] = useState(null);
 
@@ -150,93 +151,59 @@ const Logistics = () => {
 
     }, [index]);
 
-    if (showAccountCreation) {
-        return <AccountCreation setShowAccountCreation={setShowAccountCreation} />
-    }
-    
     return (
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Header />
-            <div style={{ display: 'flex', justifyContent: 'center', flex: 1, paddingBottom: 40 }}>
-                <div>
-                    <div style={{ display: 'flex', marginBottom: 40 }}>
-                        <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'eventDetails' ? 'bold' : 'normal' }}>1. Event Details</Text>
-                        <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'preferences' ? 'bold' : 'normal', marginLeft: '7.5rem', marginRight: '7.5rem' }}>2. Preferences</Text>
-                        <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'itinerary' ? 'bold' : 'normal' }}>3. Your Custom Itinerary</Text>
-                    </div>
-                    <HeaderText>{logisticsQuiz[index].question}</HeaderText>
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 32, paddingBottom: 32 }}>
-                        {
-                            logisticsQuiz[index].options && (
-                                <div style={{ marginTop: 16 }}>
-                                    {
-                                        logisticsQuiz[index].options.map((option) => <QuizOption text={option} onClick={() => setIndex(index + 1)} />)
-                                    }
-                                </div>
-                            )
-                        }
-                        {
-                            (logisticsQuiz[index].responseType === 'calendar') && <QuizCalendar value={date} onChange={setDate} />
-                        }
-                        {
-                            (logisticsQuiz[index].responseType === 'summary' && logisticsQuiz[index].stage === 'eventDetails') && (
-                                <div style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly' }}>
-                                    <Text style={{ fontWeight: 'lighter' }}>Fremont, Wednesday, April 6th, 4pm - 8pm, $$$ Budget</Text>
-                                    <Text style={{ fontWeight: 'lighter' }}>Now that we've got your logistics down, we'll ask you a couple questions about your preferences and what you like to do for fun!</Text>
-                                    <QuizOption text="Let's do it" onClick={() => setIndex(index + 1)} />
-                                </div>
-                            )
-                        }
-                        {
-                            (logisticsQuiz[index].responseType === 'summary' && logisticsQuiz[index].stage === 'itinerary') && (
-                                <div style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly' }}>
-                                    <Text style={{ fontWeight: 'lighter' }}>Thanks for answering our questions! Sit back while we put together your custom itinerary.</Text>
-                                    <LoadingSpinner />
-                                </div>
-                            )
-                        }
-                    </div>
-                </div>
-                {/* {
-                    showItinerary ? (
-                        <Itinerary setShowAccountCreation={setShowAccountCreation} />
-                    ) : (
-                        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', paddingTop: 24, height: height * 0.7, flex: 1 }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', width: width * 0.75, marginBottom: 40 }}>
+            <div style={{ display: 'flex', justifyContent: 'center', flex: 1, paddingBottom: 48 }}>
+                {
+                    showItinerary ? <Itinerary /> : (
+                        <div>
+                            <div style={{ display: 'flex', marginBottom: 48 }}>
                                 <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'eventDetails' ? 'bold' : 'normal' }}>1. Event Details</Text>
-                                <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'preferences' ? 'bold' : 'normal' }}>2. Preferences</Text>
+                                <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'preferences' ? 'bold' : 'normal', marginLeft: '7.5rem', marginRight: '7.5rem' }}>2. Preferences</Text>
                                 <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'itinerary' ? 'bold' : 'normal' }}>3. Your Custom Itinerary</Text>
                             </div>
                             <HeaderText>{logisticsQuiz[index].question}</HeaderText>
-                            {
-                                logisticsQuiz[index].options && (
-                                    <div style={{ marginTop: 16 }}>
-                                        {
-                                            logisticsQuiz[index].options.map((option) => <QuizOption text={option} onClick={() => setIndex(index + 1)} />)
-                                        }
-                                    </div>
-                                )
-                            }
-                            {
-                                (logisticsQuiz[index].responseType === 'summary' && logisticsQuiz[index].stage === 'eventDetails') && (
-                                    <div style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly' }}>
-                                        <Text style={{ fontWeight: 'lighter' }}>Fremont, Wednesday, April 6th, 4pm - 8pm, $$$ Budget</Text>
-                                        <Text style={{ fontWeight: 'lighter' }}>Now that we've got your logistics down, we'll ask you a couple questions about your preferences and what you like to do for fun!</Text>
-                                        <QuizOption text="Let's do it" onClick={() => setIndex(index + 1)} />
-                                    </div>
-                                )
-                            }
-                            {
-                                (logisticsQuiz[index].responseType === 'summary' && logisticsQuiz[index].stage === 'itinerary') && (
-                                    <div style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly' }}>
-                                        <Text style={{ fontWeight: 'lighter' }}>Thanks for answering our questions! Sit back while we put together your custom itinerary.</Text>
-                                        <LoadingSpinner />
-                                    </div>
-                                )
-                            }
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 32, paddingBottom: 32 }}>
+                                {
+                                    logisticsQuiz[index].options && (
+                                        <div style={{ marginTop: 16 }}>
+                                            {
+                                                logisticsQuiz[index].options.map((option) => <QuizOption text={option} onClick={() => {
+                                                    setQuizResponses([ ...quizResponse, option]);
+                                                    setIndex(index + 1);
+                                                }} />)
+                                            }
+                                        </div>
+                                    )
+                                }
+                                {
+                                    (logisticsQuiz[index].responseType === 'calendar') && <QuizCalendar value={date} onChange={(date) => {
+                                        setQuizResponses([ ...quizResponse, date]);
+                                        setIndex(index + 1);
+                                    }} />
+                                }
+                                {
+                                    (logisticsQuiz[index].responseType === 'summary' && logisticsQuiz[index].stage === 'eventDetails') && (
+                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 40 }}>
+                                            <Text style={{ fontWeight: 200, maxWidth: 750 }}>{quizResponse[0]}, {moment(quizResponse[1]).format('dddd MMM Do')}, {quizResponse[2].substring(quizResponse[2].indexOf(' ') + 2, quizResponse[2].length -1)}, {quizResponse[3]} Budget</Text>
+                                            <Text style={{ fontWeight: 300, marginTop: 40, marginBottom: 40, maxWidth: 750 }}>Now that we've got your logistics down, we'll ask you a couple questions about your preferences and what you like to do for fun!</Text>
+                                            <QuizOption text="Let's do it" onClick={() => setIndex(index + 1)} />
+                                        </div>
+                                    )
+                                }
+                                {
+                                    (logisticsQuiz[index].responseType === 'summary' && logisticsQuiz[index].stage === 'itinerary') && (
+                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 40 }}>
+                                            <Text style={{ fontWeight: 300, marginTop: 80, marginBottom: 80, maxWidth: 750 }}>Thanks for answering our questions! Sit back while we put together your custom itinerary.</Text>
+                                            <LoadingSpinner />
+                                        </div>
+                                    )
+                                }
+                            </div>
                         </div>
                     )
-                } */}
+                }
             </div>
             <Footer />
         </div>

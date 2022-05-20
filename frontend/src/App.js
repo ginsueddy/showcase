@@ -1,4 +1,9 @@
+import { useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { getAuth, onAuthStateChanged, signOut } from '@firebase/auth';
+import { firebaseApp } from './config';
+import { fetchServerUser } from './utils';
+import { Context as UserContext } from './context/UserContext';
 import Home from './components/screens/Home';
 import Booking from './components/screens/Booking';
 import Logistics from './components/screens/Logistics';
@@ -7,6 +12,35 @@ import Account from './components/screens/Account';
 import './App.css';
 
 function App() {
+    const {
+        setCurrentUserFromFirebase
+    } = useContext(UserContext);
+
+    useEffect(() => {
+        const auth = getAuth(firebaseApp);
+    
+        const shouldSignOut = false; // used to sign out for testing purposes
+        if (shouldSignOut) {
+            signOut(auth);
+        } else {
+            const unsubscribe = authenticate();
+            return () => {
+                unsubscribe();
+            };
+        }
+      }, []);
+    
+    const authenticate = () => {
+        const auth = getAuth(firebaseApp);
+        return onAuthStateChanged(auth, (firebaseUser) => {
+            if (firebaseUser) {
+                fetchServerUser(firebaseUser).then((currentUser) => {
+                    setCurrentUserFromFirebase(currentUser);
+                });
+            }
+        })
+    };
+
     return (
         <Router>
             <Routes>
