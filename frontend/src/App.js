@@ -9,6 +9,7 @@ import Booking from './components/screens/Booking';
 import Logistics from './components/screens/Logistics';
 import Login from './components/screens/Login';
 import Account from './components/screens/Account';
+import ItineraryDetails from './components/screens/ItineraryDetails';
 import './App.css';
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
                 <Route path='/logistics' element={<Logistics />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/account' element={<Account />}  />
+                <Route path='/itinerary' element={<ItineraryDetails />}  />
             </Routes>
         </Router>
     );
