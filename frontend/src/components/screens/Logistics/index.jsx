@@ -32,12 +32,12 @@ const logisticsQuiz = [
         stage: 'eventDetails',
         options: ['N/A', '$', '$$', '$$$', '$$$$', 'I don\'t know yet']
     },
-    {
-        question: 'Is everyone in your group 21+?',
-        responseType: 'select',
-        stage: 'eventDetails',
-        options: ['Yes', 'No', 'I\'m not interested in 21+ activities']
-    },
+    // {
+    //     question: 'Is everyone in your group 21+?',
+    //     responseType: 'select',
+    //     stage: 'eventDetails',
+    //     options: ['Yes', 'No', 'I\'m not interested in 21+ activities']
+    // },
     {
         question: 'You\'re almost there!',
         responseType: 'summary',
@@ -121,10 +121,11 @@ const QuizOption = ({ text, onClick }) => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                marginTop: 24
+                marginTop: 24,
+                cursor: 'pointer'
             }}
-            onMouseEnter={() => setHoverd(!hovered)}
-            onMouseLeave={() => setHoverd(!hovered)}
+            onMouseEnter={() => setHoverd(true)}
+            onMouseLeave={() => setHoverd(false)}
             onClick={onClick}
         >
             <Text style={{ color: hovered ? 'white' : 'black' }}>{text}</Text>
@@ -176,7 +177,7 @@ const Logistics = () => {
                             )
                         }
                         {
-                            (logisticsQuiz[index].responseType === 'calendar') && <QuizCalendar value={date} onChange={setDate} />
+                            (logisticsQuiz[index].responseType === 'calendar') && <QuizCalendar value={date} onChange={() => setIndex(index + 1)} />
                         }
                         {
                             (logisticsQuiz[index].responseType === 'summary' && logisticsQuiz[index].stage === 'eventDetails') && (
