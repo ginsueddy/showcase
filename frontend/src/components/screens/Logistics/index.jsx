@@ -4,6 +4,7 @@ import useWindowDimensions from '../../../hooks/useWindowDimensions';
 import Header from '../../shared/Header';
 import Footer from "../../shared/Footer";
 import LoadingSpinner from '../../shared/LoadingSpinner';
+import QuizCalendar from '../../shared/QuizCalendar';
 import Itinerary from '../Itinerary';
 import AccountCreation from '../AccountCreation';
 
@@ -13,6 +14,11 @@ const logisticsQuiz = [
         responseType: 'select',
         stage: 'eventDetails',
         options: ['University District', 'Capitol Hill', 'Ballard', 'Fremont', 'International District', 'I don\'t know yet']
+    },
+    {
+        question: 'What day are you going?',
+        responseType: 'calendar',
+        stage: 'eventDetails'
     },
     {
         question: 'What time are you going?',
@@ -27,9 +33,21 @@ const logisticsQuiz = [
         options: ['N/A', '$', '$$', '$$$', '$$$$', 'I don\'t know yet']
     },
     {
+        question: 'Is everyone in your group 21+?',
+        responseType: 'select',
+        stage: 'eventDetails',
+        options: ['Yes', 'No', 'I\'m not interested in 21+ activities']
+    },
+    {
         question: 'You\'re almost there!',
         responseType: 'summary',
         stage: 'eventDetails'
+    },
+    {
+        question: 'Will you be spending time with friends or planning for something solo?',
+        responseType: 'select',
+        stage: 'preferences',
+        options: ['I have a large group to plan for', 'Just for a couple of friends', 'Something to do by myself']
     },
     {
         question: 'How active are you?',
@@ -67,7 +85,6 @@ const HeaderText = styled.div`
     font-style: normal;
     font-weight: 700;
     font-size: 36px;
-    line-height: 76%;
     text-align: center;
     letter-spacing: 1px;
 `;
@@ -77,10 +94,18 @@ const Text = styled.div`
     font-style: normal;
     font-weight: 300;
     font-size: 28px;
-    line-height: 4px;
     text-align: center;
     letter-spacing: 1px;
 `;
+
+const ButtonText = styled.div`
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    color: #FFFFFF;
+`;
+
 
 const QuizOption = ({ text, onClick }) => {
     const [hovered, setHoverd] = useState(false);
@@ -114,6 +139,8 @@ const Logistics = () => {
     const [showItinerary, setShowItinerary] = useState(false);
     const [showAccountCreation, setShowAccountCreation] = useState(false);
 
+    const [date, setDate] = useState(null);
+
     useEffect(() => {
         if (index === logisticsQuiz.length - 1) {
             setTimeout(() => {
@@ -128,19 +155,17 @@ const Logistics = () => {
     }
     
     return (
-        <>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Header />
-            {
-                showItinerary ? (
-                    <Itinerary setShowAccountCreation={setShowAccountCreation} />
-                ) : (
-                    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', paddingTop: 24, height: height * 0.7 }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', width: width * 0.75, marginBottom: 40 }}>
-                            <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'eventDetails' ? 'bold' : 'normal' }}>1. Event Details</Text>
-                            <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'preferences' ? 'bold' : 'normal' }}>2. Preferences</Text>
-                            <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'itinerary' ? 'bold' : 'normal' }}>3. Your Custom Itinerary</Text>
-                        </div>
-                        <HeaderText>{logisticsQuiz[index].question}</HeaderText>
+            <div style={{ display: 'flex', justifyContent: 'center', flex: 1, paddingBottom: 40 }}>
+                <div>
+                    <div style={{ display: 'flex', marginBottom: 40 }}>
+                        <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'eventDetails' ? 'bold' : 'normal' }}>1. Event Details</Text>
+                        <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'preferences' ? 'bold' : 'normal', marginLeft: '7.5rem', marginRight: '7.5rem' }}>2. Preferences</Text>
+                        <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'itinerary' ? 'bold' : 'normal' }}>3. Your Custom Itinerary</Text>
+                    </div>
+                    <HeaderText>{logisticsQuiz[index].question}</HeaderText>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 32, paddingBottom: 32 }}>
                         {
                             logisticsQuiz[index].options && (
                                 <div style={{ marginTop: 16 }}>
@@ -149,6 +174,9 @@ const Logistics = () => {
                                     }
                                 </div>
                             )
+                        }
+                        {
+                            (logisticsQuiz[index].responseType === 'calendar') && <QuizCalendar value={date} onChange={setDate} />
                         }
                         {
                             (logisticsQuiz[index].responseType === 'summary' && logisticsQuiz[index].stage === 'eventDetails') && (
@@ -168,10 +196,50 @@ const Logistics = () => {
                             )
                         }
                     </div>
-                )
-            }
+                </div>
+                {/* {
+                    showItinerary ? (
+                        <Itinerary setShowAccountCreation={setShowAccountCreation} />
+                    ) : (
+                        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', paddingTop: 24, height: height * 0.7, flex: 1 }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', width: width * 0.75, marginBottom: 40 }}>
+                                <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'eventDetails' ? 'bold' : 'normal' }}>1. Event Details</Text>
+                                <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'preferences' ? 'bold' : 'normal' }}>2. Preferences</Text>
+                                <Text style={{ fontSize: 20, fontWeight: logisticsQuiz[index].stage === 'itinerary' ? 'bold' : 'normal' }}>3. Your Custom Itinerary</Text>
+                            </div>
+                            <HeaderText>{logisticsQuiz[index].question}</HeaderText>
+                            {
+                                logisticsQuiz[index].options && (
+                                    <div style={{ marginTop: 16 }}>
+                                        {
+                                            logisticsQuiz[index].options.map((option) => <QuizOption text={option} onClick={() => setIndex(index + 1)} />)
+                                        }
+                                    </div>
+                                )
+                            }
+                            {
+                                (logisticsQuiz[index].responseType === 'summary' && logisticsQuiz[index].stage === 'eventDetails') && (
+                                    <div style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly' }}>
+                                        <Text style={{ fontWeight: 'lighter' }}>Fremont, Wednesday, April 6th, 4pm - 8pm, $$$ Budget</Text>
+                                        <Text style={{ fontWeight: 'lighter' }}>Now that we've got your logistics down, we'll ask you a couple questions about your preferences and what you like to do for fun!</Text>
+                                        <QuizOption text="Let's do it" onClick={() => setIndex(index + 1)} />
+                                    </div>
+                                )
+                            }
+                            {
+                                (logisticsQuiz[index].responseType === 'summary' && logisticsQuiz[index].stage === 'itinerary') && (
+                                    <div style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly' }}>
+                                        <Text style={{ fontWeight: 'lighter' }}>Thanks for answering our questions! Sit back while we put together your custom itinerary.</Text>
+                                        <LoadingSpinner />
+                                    </div>
+                                )
+                            }
+                        </div>
+                    )
+                } */}
+            </div>
             <Footer />
-        </>
+        </div>
     );
 };
 // party.js
