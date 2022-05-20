@@ -35,7 +35,7 @@ const Header = ({ isLanding }) => {
     const { height, width } = useWindowDimensions();
 
     return (
-        <div style={{ width, height: height * .1 }}>
+        <div style={{ width, height: height * .15 }}>
             <div style={{ paddingLeft: '5%', paddingRight: '3%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                     <HighlightedHeader style={{ fontSize: 36 }}>cultured</HighlightedHeader>
