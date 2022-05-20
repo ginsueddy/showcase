@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 let COLLECTION = 'nightplanner'
 let DATABASE = `mongodb+srv://arjunsrivastava01:arjunsrivastava01@info441.o2o9t.mongodb.net/${COLLECTION}?retryWrites=true&w=majority` // MongoDB url
 let models = {};
@@ -23,17 +23,50 @@ async function main() {
 
     // Event
     const EventSchema = new mongoose.Schema({
-        name: String,
-        address: String,
-        city: String,
-        neighborhood: String,
-        state: String,
-        zip: String,
-        categories: [String],
-        price: Number,
-        phone: String,
-        business_img_url: String,
-        hours_of_operation: String
+        name:{
+            type: String,
+            required: true
+        },
+        address: {
+            type: String,
+            required: true
+        },
+        city: {
+            city: String,
+            required: true
+        },
+        neightborhood: {
+            type: String,
+            required: true
+        },
+        state: {
+            type: String, 
+            required: true
+        },
+        zip: {
+            type: String, 
+            required: true
+        },
+        categories: {
+            type: Array, 
+            required: true
+        },
+        price: {
+            type: Number, 
+            required: true
+        },
+        phone: {
+            type: String, 
+            required: true
+        },
+        businessImgUrl: {
+            type: String,
+            required: true
+        },
+        hoursOfOperation: {
+            type: String,
+            required: true
+        }
     });
 
     const Event = mongoose.model('Event', EventSchema);
@@ -43,9 +76,21 @@ async function main() {
     const ItinerarySchema = new mongoose.Schema({
         username: mongoose.Schema.Types.ObjectId,
         created_date: Date,
-        Event_0: EventSchema,
-        Event_1_id: EventSchema,
-        Event_2_id: EventSchema,
+        Event0Id:  {
+            type: Schema.Types.ObjectId,
+            ref: "Event",
+            required: true
+        },
+        Event1Id: {
+            type: Schema.Types.ObjectId,
+            ref: "Event",
+            requried: true
+        },
+        Event2Id: {
+            type: Schema.Types.ObjectId,
+            ref: "Event",
+            required: true
+        }
     });
 
     const Itinerary = mongoose.model('Itinerary', ItinerarySchema);
