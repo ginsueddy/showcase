@@ -35,23 +35,29 @@ const Header = ({ isLanding }) => {
     const { height, width } = useWindowDimensions();
 
     return (
-        <div style={{ width, height: height * .15 }}>
-            <div style={{ paddingLeft: '5%', paddingRight: '3%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div>
+        <div style={{ width, height: height * .15, paddingLeft: '5%', paddingRight: '3%' }}>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Link to="/" style={{ textDecoration: 'none' }}>
                     <HighlightedHeader style={{ fontSize: 36 }}>cultured</HighlightedHeader>
                     <HighlightedHeader style={{ fontSize: 36, marginTop: -20 }}>// seattle</HighlightedHeader>
-                </div>
+                </Link>
                 {
                     isLanding && (
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <div style={{ display: 'flex', flexDirection: 'row', width: '18%', justifyContent: 'space-between' }}>
-                                <Text style={{ fontSize: 14, paddingLeft: 16, paddingRight: 16 }}>ABOUT</Text>
-                                <Text style={{ fontSize: 14, paddingLeft: 16, paddingRight: 16  }}>FAQ</Text>
-                                <Link to="/login" style={{ textDecoration: 'none' }}>
-                                    <div onClick={() => console.log()} style={{ borderWidth: '1.5px', borderStyle: 'solid', borderColor: '#C7CBC7', backgroundColor: 'white', marginLeft: 16, marginRight: 24, paddingLeft: 32, paddingRight: 32, paddingTop: 12, paddingBottom: 12, borderRadius: 30, display: 'flex', alignItems: 'center' }}>
-                                        <ButtonText>LOGIN</ButtonText>
-                                    </div>
-                                </Link>
+                                {
+                                    width > 720 && (
+                                        <>
+                                            <Text style={{ fontSize: 14, paddingLeft: 16, paddingRight: 16 }}>ABOUT</Text>
+                                            <Text style={{ fontSize: 14, paddingLeft: 16, paddingRight: 16  }}>FAQ</Text>
+                                            <Link to="/login" style={{ textDecoration: 'none' }}>
+                                                <div onClick={() => console.log()} style={{ borderWidth: '1.5px', borderStyle: 'solid', borderColor: '#C7CBC7', backgroundColor: 'white', marginLeft: 16, marginRight: 24, paddingLeft: 32, paddingRight: 32, paddingTop: 12, paddingBottom: 12, borderRadius: 30, display: 'flex', alignItems: 'center' }}>
+                                                    <ButtonText>LOGIN</ButtonText>
+                                                </div>
+                                            </Link>
+                                        </>
+                                    )
+                                }
                                 <Link to="/logistics" style={{ textDecoration: 'none' }}>
                                     <div style={{ backgroundColor: '#DEC6AF', paddingLeft: 24, paddingRight: 24, paddingTop: 12, paddingBottom: 12, borderRadius: 30, display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
                                         <ButtonText style={{ color: 'white' }}>EXPLORE NOW</ButtonText>
