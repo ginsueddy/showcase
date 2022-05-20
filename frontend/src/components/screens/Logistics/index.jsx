@@ -7,7 +7,6 @@ import Footer from "../../shared/Footer";
 import LoadingSpinner from '../../shared/LoadingSpinner';
 import QuizCalendar from '../../shared/QuizCalendar';
 import Itinerary from '../Itinerary';
-import AccountCreation from '../AccountCreation';
 
 const logisticsQuiz = [
     {

@@ -21,7 +21,7 @@ const ButtonText = styled.div`
 `;
 
 
-const List = ({ listItems, isItinerary, setShowAccountCreation }) => {
+const List = ({ listItems, isItinerary, onClickSavePlans }) => {
     const { height, width } = useWindowDimensions();
     
     if (isItinerary) {
@@ -53,15 +53,12 @@ const List = ({ listItems, isItinerary, setShowAccountCreation }) => {
                         ))
                     }
                     <div style={{ display: 'flex' }}>
-                        <div onClick={() => {
-                            console.log('lksdjflk')
-                            setShowAccountCreation(true);
-                        }} style={{ backgroundColor: '#E69C57', paddingLeft: 32, paddingRight: 32, paddingTop: 12, paddingBottom: 12, borderRadius: 30, alignItems: 'center', alignSelf: 'baseline', marginTop: 16 }}>
+                        <div onClick={onClickSavePlans} style={{ cursor: 'pointer', backgroundColor: '#E69C57', paddingLeft: 32, paddingRight: 32, paddingTop: 12, paddingBottom: 12, borderRadius: 30, alignItems: 'center', alignSelf: 'baseline', marginTop: 16 }}>
                             <ButtonText style={{ color: 'white' }}>SAVE PLANS</ButtonText>
                         </div>
                         <div style={{ flexDirection: 'column', display: 'flex', marginLeft: 24 }}>
                             <Text style={{ fontSize: 18 }}>Don't like this?</Text>
-                            <Text style={{ fontSize: 18 }}><u>Get a new plan</u> or <u>start over.</u></Text>
+                            <Text style={{ fontSize: 18 }}><u>Get a new plan</u> or <u style={{ cursor: 'pointer' }} onClick={() => window.location.reload()}>start over.</u></Text>
                         </div>
                     </div>
                 </div>

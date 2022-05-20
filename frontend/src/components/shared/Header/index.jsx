@@ -51,7 +51,7 @@ const Header = ({ isLanding }) => {
                                 {
                                     width > 720 && (
                                         <>
-                                            <Text style={{ fontSize: 14, paddingLeft: 16, paddingRight: 16 }}>ABOUT</Text>
+                                            {/* <Text style={{ fontSize: 14, paddingLeft: 16, paddingRight: 16 }}>ABOUT</Text> */}
                                             <Link to={user ? '/account' : '/login'} style={{ textDecoration: 'none' }}>
                                                 <div style={{ borderWidth: '1.5px', borderStyle: 'solid', borderColor: '#C7CBC7', backgroundColor: 'white', marginLeft: 16, marginRight: 24, paddingLeft: 32, paddingRight: 32, paddingTop: 12, paddingBottom: 12, borderRadius: 30, display: 'flex', alignItems: 'center' }}>
                                                     <ButtonText>{user ? 'ACCOUNT' : 'LOGIN'}</ButtonText>

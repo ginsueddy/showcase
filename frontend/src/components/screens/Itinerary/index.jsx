@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
+import { Context as UserContext } from '../../../context/UserContext';
 import List from '../../shared/List';
 import elImage from '../../../assets/el.png';
 import vinImage from '../../../assets/vin.png';
 import livImage from '../../../assets/liv.png';
+import { AccountCreationForm } from '../AccountCreation';
 
 const Header = styled.div`
     font-family: 'Syne';
@@ -26,8 +29,25 @@ const Text = styled.div`
     color: #000000;
 `;
 
-const Itinerary = () => {
+const Itinerary = ({  }) => {
     const { height, width } = useWindowDimensions();
+    const navigate = useNavigate();
+
+    const { state: { user }} = useContext(UserContext);
+
+    const [showAccountCreation, setShowAccountCreation] = useState(false);
+
+    const onClickSavePlans = () => {
+        if (user) {
+            navigate('/account');
+        } else {
+            setShowAccountCreation(true);
+        }
+    }
+
+    if (showAccountCreation) {
+        return <AccountCreationForm setShowAccountCreation={setShowAccountCreation} />;
+    }
 
     return (    
         <div style={{ display: 'flex' }}>
@@ -60,6 +80,7 @@ const Itinerary = () => {
                         },
                     ]}
                     isItinerary
+                    onClickSavePlans={onClickSavePlans}
                 />
             </div>
         </div>
