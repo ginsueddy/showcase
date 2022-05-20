@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
-import useWindowDimensions from '../../../hooks/useWindowDimensions';
+import moment from 'moment';
 import { Context as UserContext } from '../../../context/UserContext';
 import Header from '../../shared/Header';
 import Footer from "../../shared/Footer";
@@ -136,10 +136,9 @@ const QuizOption = ({ text, onClick }) => {
 const Logistics = () => {
     const { state: { user }} = useContext(UserContext);
 
-    const { height, width } = useWindowDimensions();
-
     const [index, setIndex] = useState(0);
     const [showItinerary, setShowItinerary] = useState(false);
+    const [quizResponse, setQuizResponses] = useState([]);
 
     const [date, setDate] = useState(null);
 
@@ -151,7 +150,7 @@ const Logistics = () => {
         }
 
     }, [index]);
-    
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Header />
@@ -170,18 +169,24 @@ const Logistics = () => {
                                     logisticsQuiz[index].options && (
                                         <div style={{ marginTop: 16 }}>
                                             {
-                                                logisticsQuiz[index].options.map((option) => <QuizOption text={option} onClick={() => setIndex(index + 1)} />)
+                                                logisticsQuiz[index].options.map((option) => <QuizOption text={option} onClick={() => {
+                                                    setQuizResponses([ ...quizResponse, option]);
+                                                    setIndex(index + 1);
+                                                }} />)
                                             }
                                         </div>
                                     )
                                 }
                                 {
-                                    (logisticsQuiz[index].responseType === 'calendar') && <QuizCalendar value={date} onChange={() => setIndex(index + 1)} />
+                                    (logisticsQuiz[index].responseType === 'calendar') && <QuizCalendar value={date} onChange={(date) => {
+                                        setQuizResponses([ ...quizResponse, date]);
+                                        setIndex(index + 1);
+                                    }} />
                                 }
                                 {
                                     (logisticsQuiz[index].responseType === 'summary' && logisticsQuiz[index].stage === 'eventDetails') && (
                                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 40 }}>
-                                            <Text style={{ fontWeight: 200 }}>Fremont, Wednesday, April 6th, 4pm - 8pm, $$$ Budget</Text>
+                                            <Text style={{ fontWeight: 200, maxWidth: 750 }}>{quizResponse[0]}, {moment(quizResponse[1]).format('dddd MMM Do')}, {quizResponse[2].substring(quizResponse[2].indexOf(' ') + 2, quizResponse[2].length -1)}, {quizResponse[3]} Budget</Text>
                                             <Text style={{ fontWeight: 300, marginTop: 40, marginBottom: 40, maxWidth: 750 }}>Now that we've got your logistics down, we'll ask you a couple questions about your preferences and what you like to do for fun!</Text>
                                             <QuizOption text="Let's do it" onClick={() => setIndex(index + 1)} />
                                         </div>
